@@ -2,6 +2,7 @@ defmodule BowlSiteWeb.Router do
   use BowlSiteWeb, :router
 
   import BowlSiteWeb.UserAuth
+  import Backpex.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -43,11 +44,22 @@ defmodule BowlSiteWeb.Router do
   scope "/admin", BowlSiteWeb do
     pipe_through [:browser, :require_admin]
 
-    live "/", Admin.DashboardLive, :index
-    live "/products", Admin.ProductListLive, :index
-    live "/products/new", Admin.ProductFormLive, :new
-    live "/products/:id/edit", Admin.ProductFormLive, :edit
-    live "/pages", Admin.PageListLive, :index
-    live "/pages/:id/edit", Admin.PageFormLive, :edit
+    live_session :admin_cms,
+      on_mount: [
+        {BowlSiteWeb.UserAuth, :ensure_authenticated},
+        Backpex.InitAssigns
+      ] do
+      live "/", Admin.DashboardLive, :index
+
+      # Custom product form handles create/edit (multi-image upload).
+      # These routes must come BEFORE live_resources so they take priority
+      # over Backpex's generated /products/new and /products/:id/edit routes.
+      live "/products/new", Admin.ProductFormLive, :new
+      live "/products/:id/edit", Admin.ProductFormLive, :edit
+
+      # Backpex LiveResources (list, show, search, delete)
+      live_resources "/products", Admin.ProductResource
+      live_resources "/pages", Admin.StaticPageResource
+    end
   end
 end

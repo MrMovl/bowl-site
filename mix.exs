@@ -51,7 +51,8 @@ defmodule BowlSite.MixProject do
       {:waffle, "~> 1.1"},
       {:waffle_ecto, "~> 0.0.11"},
       {:ex_image_info, "~> 0.2"},
-      {:bcrypt_elixir, "~> 3.0"}
+      {:bcrypt_elixir, "~> 3.0"},
+      {:backpex, "~> 0.18"}
     ]
   end
 
