@@ -1,16 +1,26 @@
 import Config
 
-config :bowl_site, BowlSite.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "bowl_site_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+# Support DATABASE_URL for Docker; fall back to individual fields for local dev.
+if url = System.get_env("DATABASE_URL") do
+  config :bowl_site, BowlSite.Repo,
+    url: url,
+    stacktrace: true,
+    show_sensitive_data_on_connection_error: true,
+    pool_size: 10
+else
+  config :bowl_site, BowlSite.Repo,
+    username: "postgres",
+    password: "postgres",
+    hostname: "localhost",
+    database: "bowl_site_dev",
+    stacktrace: true,
+    show_sensitive_data_on_connection_error: true,
+    pool_size: 10
+end
 
 config :bowl_site, BowlSiteWeb.Endpoint,
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  # Bind to all interfaces so the container port is reachable from the host.
+  http: [ip: {0, 0, 0, 0}, port: String.to_integer(System.get_env("PORT", "4000"))],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

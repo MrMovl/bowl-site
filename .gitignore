@@ -22,6 +22,8 @@ erl_crash.dump
 /config/*.secret.exs
 *.secret.exs
 .env
+.env.*
+!.env.example
 
 # Editor files
 .elixir_ls/

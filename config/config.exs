@@ -33,7 +33,15 @@ config :esbuild,
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+    env: %{
+      # Include both hex deps (for packages shipped as Hex) and node_modules
+      # (for npm packages like alpinejs / daisyui used by Backpex).
+      "NODE_PATH" =>
+        Enum.join(
+          [Path.expand("../deps", __DIR__), Path.expand("../assets/node_modules", __DIR__)],
+          ":"
+        )
+    }
   ]
 
 config :tailwind,
