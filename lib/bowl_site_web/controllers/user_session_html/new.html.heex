@@ -1,0 +1,20 @@
+<div class="min-h-screen flex items-center justify-center bg-stone-50">
+  <div class="w-full max-w-sm">
+    <h1 class="text-2xl font-light text-stone-800 mb-8 text-center">Admin Login</h1>
+
+    <.form :let={f} for={%{}} as={:user} action={~p"/admin/login"} class="space-y-4">
+      <%= if @error_message do %>
+        <div class="bg-rose-50 text-rose-700 text-sm px-4 py-3 rounded">
+          <%= @error_message %>
+        </div>
+      <% end %>
+
+      <.input field={f[:email]} type="email" label="E-Mail" required />
+      <.input field={f[:password]} type="password" label="Passwort" required />
+
+      <.button type="submit" class="w-full justify-center">
+        Anmelden
+      </.button>
+    </.form>
+  </div>
+</div>

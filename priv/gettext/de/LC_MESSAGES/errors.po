@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "can't be blank"
+msgstr "darf nicht leer sein"
+
+msgid "has already been taken"
+msgstr "ist bereits vergeben"
+
+msgid "is invalid"
+msgstr "ist ungültig"
+
+msgid "must be accepted"
+msgstr "muss akzeptiert werden"
+
+msgid "must be equal to %{number}"
+msgstr "muss gleich %{number} sein"
+
+msgid "must be even"
+msgstr "muss gerade sein"
+
+msgid "must be greater than %{number}"
+msgstr "muss größer als %{number} sein"
+
+msgid "must be greater than or equal to %{number}"
+msgstr "muss größer oder gleich %{number} sein"
+
+msgid "must be less than %{number}"
+msgstr "muss kleiner als %{number} sein"
+
+msgid "must be less than or equal to %{number}"
+msgstr "muss kleiner oder gleich %{number} sein"
+
+msgid "must be odd"
+msgstr "muss ungerade sein"
+
+msgid "must have %{count} item(s)"
+msgid_plural "must have %{count} item(s)"
+msgstr[0] "muss %{count} Eintrag haben"
+msgstr[1] "muss %{count} Einträge haben"
+
+msgid "is not a number"
+msgstr "ist keine Zahl"
+
+msgid "is not an integer"
+msgstr "ist keine ganze Zahl"
+
+msgid "must be %{count} character(s)"
+msgid_plural "must be %{count} character(s)"
+msgstr[0] "muss %{count} Zeichen lang sein"
+msgstr[1] "muss %{count} Zeichen lang sein"
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "should be at least %{count} character(s)"
+msgstr[0] "muss mindestens %{count} Zeichen lang sein"
+msgstr[1] "muss mindestens %{count} Zeichen lang sein"
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "should be at most %{count} character(s)"
+msgstr[0] "darf höchstens %{count} Zeichen lang sein"
+msgstr[1] "darf höchstens %{count} Zeichen lang sein"

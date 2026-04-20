@@ -1,0 +1,48 @@
+<header class="bg-white border-b border-stone-200">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <a href={~p"/"} class="text-xl font-semibold tracking-wide text-stone-800">
+      Drechslerei Reibisch
+    </a>
+    <div class="flex items-center gap-6">
+      <a href={~p"/shop"} class="text-sm text-stone-600 hover:text-stone-900">
+        <%= if @locale == "de", do: "Shop", else: "Shop" %>
+      </a>
+      <%= if @current_user do %>
+        <a href={~p"/admin"} class="text-sm text-stone-400 hover:text-stone-600">Admin</a>
+      <% end %>
+      <!-- Language toggle -->
+      <div class="flex gap-1 text-xs">
+        <.form action={~p"/language"} method="post">
+          <button
+            name="locale"
+            value="de"
+            class={"px-1 py-0.5 rounded #{if @locale == "de", do: "font-bold text-stone-900", else: "text-stone-400 hover:text-stone-700"}"}
+          >DE</button>
+          <span class="text-stone-300">|</span>
+          <button
+            name="locale"
+            value="en"
+            class={"px-1 py-0.5 rounded #{if @locale == "en", do: "font-bold text-stone-900", else: "text-stone-400 hover:text-stone-700"}"}
+          >EN</button>
+        </.form>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="min-h-screen">
+  <.flash_group flash={@flash} />
+  <%= @inner_content %>
+</main>
+
+<footer class="bg-white border-t border-stone-200 mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-500">
+    <p>© <%= Date.utc_today().year %> Tomke Reibisch</p>
+    <nav class="flex gap-4">
+      <a href={~p"/imprint"} class="hover:text-stone-700">
+        <%= if @locale == "de", do: "Impressum", else: "Imprint" %>
+      </a>
+      <a href={~p"/faq"} class="hover:text-stone-700">FAQ</a>
+    </nav>
+  </div>
+</footer>

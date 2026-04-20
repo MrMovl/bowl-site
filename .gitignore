@@ -1,0 +1,34 @@
+# Build artifacts
+/_build/
+/cover/
+/deps/
+/doc/
+/.fetch
+
+# Test artifacts
+erl_crash.dump
+*.ez
+
+# Mix artifacts
+*.beam
+.mix/
+
+# Phoenix artifacts
+/priv/static/assets/
+/priv/static/uploads/
+
+# Secrets and local config
+/config/prod.secret.exs
+/config/*.secret.exs
+*.secret.exs
+.env
+
+# Editor files
+.elixir_ls/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Node
+/assets/node_modules/
