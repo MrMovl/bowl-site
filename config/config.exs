@@ -45,14 +45,15 @@ config :esbuild,
   ]
 
 config :tailwind,
-  version: "3.4.3",
+  version: "4.1.12",
   bowl_site: [
     args: ~w(
-      --config=tailwind.config.js
       --input=css/app.css
       --output=../priv/static/assets/app.css
     ),
     cd: Path.expand("../assets", __DIR__)
   ]
+
+config :backpex, :pubsub_server, BowlSite.PubSub
 
 import_config "#{config_env()}.exs"

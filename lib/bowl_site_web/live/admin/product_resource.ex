@@ -3,8 +3,8 @@ defmodule BowlSiteWeb.Admin.ProductResource do
     adapter_config: [
       schema: BowlSite.Catalog.Product,
       repo: BowlSite.Repo,
-      update_changeset: &BowlSite.Catalog.Product.changeset/2,
-      create_changeset: &BowlSite.Catalog.Product.changeset/2
+      update_changeset: &BowlSite.Catalog.Product.changeset/3,
+      create_changeset: &BowlSite.Catalog.Product.changeset/3
     ],
     layout: {BowlSiteWeb.Layouts, :admin}
 

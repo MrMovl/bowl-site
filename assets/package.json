@@ -1,0 +1,7 @@
+{
+  "name": "bowl-site-assets",
+  "version": "0.0.1",
+  "dependencies": {
+    "daisyui": "^5.0.0"
+  }
+}

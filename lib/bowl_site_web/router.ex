@@ -35,6 +35,9 @@ defmodule BowlSiteWeb.Router do
   scope "/admin", BowlSiteWeb do
     pipe_through :browser
 
+    # Required by Backpex to set cookies for LiveResource views
+    backpex_routes()
+
     get "/login", UserSessionController, :new
     post "/login", UserSessionController, :create
     delete "/logout", UserSessionController, :delete

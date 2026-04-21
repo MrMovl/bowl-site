@@ -1,3 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Backpex template files — Tailwind must scan these for utility classes */
+@source "../../deps/backpex/**/*.*ex";
+@source "../../deps/backpex/assets/js/**/*.*js";
+
+/* daisyUI v5 (required by Backpex) */
+@plugin "daisyui";
+
+/* Heroicons — generates hero-* CSS classes used by core_components.ex */
+@plugin "./tailwind_heroicons.js";
+
+/* Phoenix LiveView loading-state variants */
+@variant phx-click-loading (.phx-click-loading &, &.phx-click-loading);
+@variant phx-submit-loading (.phx-submit-loading &, &.phx-submit-loading);
+@variant phx-change-loading (.phx-change-loading &, &.phx-change-loading);
+@variant phx-no-feedback (.phx-no-feedback &, &.phx-no-feedback);

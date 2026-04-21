@@ -15,7 +15,7 @@ defmodule BowlSite.Content.StaticPage do
     timestamps(type: :utc_datetime)
   end
 
-  def changeset(page, attrs) do
+  def changeset(page, attrs, _metadata \\ %{}) do
     page
     |> cast(attrs, [
       :slug, :title_de, :title_en, :body_de, :body_en,

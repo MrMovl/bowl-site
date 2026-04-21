@@ -29,7 +29,7 @@ defmodule BowlSite.Catalog.Product do
     timestamps(type: :utc_datetime)
   end
 
-  def changeset(product, attrs) do
+  def changeset(product, attrs, _metadata \\ %{}) do
     product
     |> cast(attrs, [
       :name_de, :name_en, :slug, :description_de, :description_en,

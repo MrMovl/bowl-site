@@ -3,8 +3,8 @@ defmodule BowlSiteWeb.Admin.StaticPageResource do
     adapter_config: [
       schema: BowlSite.Content.StaticPage,
       repo: BowlSite.Repo,
-      update_changeset: &BowlSite.Content.StaticPage.changeset/2,
-      create_changeset: &BowlSite.Content.StaticPage.changeset/2
+      update_changeset: &BowlSite.Content.StaticPage.changeset/3,
+      create_changeset: &BowlSite.Content.StaticPage.changeset/3
     ],
     layout: {BowlSiteWeb.Layouts, :admin}
 
