@@ -1,0 +1,20 @@
+# deps
+node_modules
+
+# build output
+.next
+out
+
+# env
+.env
+*.local
+
+# uploads
+public/media/*
+!public/media/.gitkeep
+
+# misc
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+src/payload-types.ts
