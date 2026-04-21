@@ -1,6 +1,7 @@
 defmodule BowlSite.Catalog.ProductImage do
   use Ecto.Schema
   import Ecto.Changeset
+  import Waffle.Ecto.Changeset
 
   alias BowlSite.Catalog.Uploaders.ProductImage, as: ProductImageUploader
 

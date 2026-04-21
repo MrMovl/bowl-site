@@ -6,12 +6,7 @@ defmodule BowlSiteWeb.Admin.StaticPageResource do
       update_changeset: &BowlSite.Content.StaticPage.changeset/2,
       create_changeset: &BowlSite.Content.StaticPage.changeset/2
     ],
-    layout: {BowlSiteWeb.Layouts, :admin},
-    pubsub: [
-      server: BowlSite.PubSub,
-      topic: "static_pages",
-      event_prefix: "static_page_"
-    ]
+    layout: {BowlSiteWeb.Layouts, :admin}
 
   @impl Backpex.LiveResource
   def singular_name, do: "Seite"

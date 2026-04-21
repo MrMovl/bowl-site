@@ -6,12 +6,7 @@ defmodule BowlSiteWeb.Admin.ProductResource do
       update_changeset: &BowlSite.Catalog.Product.changeset/2,
       create_changeset: &BowlSite.Catalog.Product.changeset/2
     ],
-    layout: {BowlSiteWeb.Layouts, :admin},
-    pubsub: [
-      server: BowlSite.PubSub,
-      topic: "products",
-      event_prefix: "product_"
-    ]
+    layout: {BowlSiteWeb.Layouts, :admin}
 
   @impl Backpex.LiveResource
   def singular_name, do: "Produkt"
