@@ -3,7 +3,7 @@ FROM node:20-alpine AS base
 # ---- dev (hot reload, source mounted via volume) ----
 FROM base AS dev
 WORKDIR /app
-COPY package*.json ./
+COPY package*.json tsconfig.json next.config.ts ./
 RUN npm install
 EXPOSE 3000
 CMD ["npm", "run", "dev"]
