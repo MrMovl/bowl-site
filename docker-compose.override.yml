@@ -1,14 +1,14 @@
 # Automatically merged with docker-compose.yml by `docker compose up`.
-# Configures the app service for local development: source code is
-# mounted so Next.js hot reload works without rebuilding the image.
+# Mounts only source directories so node_modules stays inside the container.
+# Next.js hot reload picks up changes to src/ and public/ immediately.
 services:
   app:
     build:
       context: .
       target: dev
     volumes:
-      - .:/app
-      - /app/node_modules
+      - ./src:/app/src
+      - ./public:/app/public
       - media:/app/public/media
     environment:
       - NODE_ENV=development

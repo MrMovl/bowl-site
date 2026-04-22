@@ -24,7 +24,13 @@ The defaults work out of the box. Change `PAYLOAD_SECRET` and `POSTGRES_PASSWORD
 docker compose up
 ```
 
-This starts PostgreSQL and the Next.js dev server with hot reload. Source code changes are reflected immediately without rebuilding the image.
+This starts PostgreSQL and the Next.js dev server with hot reload. Changes to `src/` and `public/` are reflected immediately.
+
+If you change `package.json`, `next.config.ts`, or any other root-level config file, restart with `--build` to pick them up:
+
+```bash
+docker compose up --build
+```
 
 **3. Create your admin account**
 
