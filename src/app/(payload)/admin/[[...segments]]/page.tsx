@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { RootPage, generatePageMetadata } from '@payloadcms/next/views'
+import config from '@payload-config'
 
 type Args = {
   params: Promise<{ segments: string[] }>
@@ -7,17 +8,8 @@ type Args = {
 }
 
 export const generateMetadata = ({ params, searchParams }: Args) =>
-  generatePageMetadata({
-    config: import('@payload-config') as any,
-    params,
-    searchParams,
-  })
+  generatePageMetadata({ config: config as any, params, searchParams })
 
 export default function Page({ params, searchParams }: Args) {
-  return RootPage({
-    config: import('@payload-config') as any,
-    params,
-    searchParams,
-    importMap: {},
-  })
+  return RootPage({ config: config as any, params, searchParams, importMap: {} })
 }
