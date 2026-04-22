@@ -6,75 +6,48 @@ Handmade woodwork gallery with a self-hosted CMS. Built with Next.js 15 + Payloa
 
 ### Prerequisites
 
-- Node.js 20+
-- Docker (for the database)
+- Docker
 
 ### Steps
 
-**1. Install dependencies**
-
-```bash
-npm install
-```
-
-**2. Create your `.env` file**
+**1. Create your `.env` file**
 
 ```bash
 cp .env.example .env
 ```
 
-The defaults work for local dev as-is. Change `PAYLOAD_SECRET` to any random string of 32+ characters before going to production.
+The defaults work out of the box. Change `PAYLOAD_SECRET` and `POSTGRES_PASSWORD` before going to production.
 
-**3. Start the database**
-
-```bash
-docker compose up db -d
-```
-
-This starts PostgreSQL on `localhost:5432`. Wait a few seconds for it to be ready, or check with:
+**2. Start everything**
 
 ```bash
-docker compose ps
+docker compose up
 ```
 
-**4. Start the dev server**
+This starts PostgreSQL and the Next.js dev server with hot reload. Source code changes are reflected immediately without rebuilding the image.
 
-```bash
-npm run dev
-```
+**3. Create your admin account**
 
-Payload runs database migrations automatically on first startup.
+Open [http://localhost:3000/admin](http://localhost:3000/admin) and create your first user. Payload runs database migrations automatically on first startup.
 
-**5. Create your admin account**
+**4. Seed content for FAQ and legal pages**
 
-Open [http://localhost:3000/admin](http://localhost:3000/admin) and create your first user. This is the account you'll use to manage products and pages.
+The `/faq` and `/legal` pages render content from the **Pages** collection. In the admin panel, create two entries:
 
-### Seed content for FAQ and legal pages
-
-The FAQ and legal pages render content from the `Pages` collection. After creating your admin account, go to **Pages** in the admin panel and create two entries:
-
-- slug: `faq`, title: `FAQ`, content: your FAQ text
-- slug: `legal`, title: `Legal`, content: your legal notice
+- slug: `faq`, title: `FAQ`
+- slug: `legal`, title: `Legal notice`
 
 ---
 
-## Full Docker deployment
+## Production deployment
 
-For running everything in containers (e.g. on a VPS):
-
-**1.** In `.env`, swap the `DATABASE_URI` hostname from `localhost` to `db`:
-
-```
-DATABASE_URI=postgresql://postgres:changeme@db:5432/bowlsite
-```
-
-**2.** Build and start:
+`docker-compose.override.yml` is only loaded automatically for local development. For production, skip it and build the optimised image explicitly:
 
 ```bash
-docker compose up --build
+docker compose -f docker-compose.yml up --build
 ```
 
-The app will be available on port 3000. Put a reverse proxy (nginx, Caddy) in front of it for TLS.
+Put a reverse proxy (nginx, Caddy) in front of port 3000 for TLS.
 
 ---
 
@@ -95,9 +68,9 @@ src/
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Start dev server with hot reload |
-| `npm run build` | Production build |
-| `npm run generate:types` | Regenerate `src/payload-types.ts` after schema changes |
-| `docker compose up db -d` | Start only the database |
+| `docker compose up` | Start everything for local dev (hot reload) |
+| `docker compose up --build` | Rebuild image after changing dependencies |
 | `docker compose down` | Stop all containers |
-| `docker compose down -v` | Stop and delete volumes (wipes database) |
+| `docker compose down -v` | Stop and delete volumes (wipes database and media) |
+| `docker compose logs -f app` | Tail app logs |
+| `npm run generate:types` | Regenerate `src/payload-types.ts` after schema changes |
